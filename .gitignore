@@ -1,0 +1,8 @@
+# 运行产物（可能含真实账号/卡信息/token）
+ultra0-report/
+*.json
+*.png
+*.jpg
+accounts.txt
+*.log
+__pycache__/
