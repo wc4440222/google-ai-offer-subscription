@@ -51,7 +51,7 @@ python ultra0_patched.py --account <YOUR_GMAIL> --no-add --no-switch --plan pro6
 
 成功标志：日志出现「已拉起收银台」「已确认 0 元订阅」。
 
-**人工核对点**：工具的 `confirm_zero` 用正则匹配价格，Play 的双栏价格排版（"今天 ¥0 / 2027年 $19.99"）可能被误判为收费而不点。弹窗出现时必须读屏/截图核对：套餐名正确 + 今天免费 + 有折算天数字样；确认无误后人工点订阅。
+**人工核对点（重要）**：工具的 `confirm_zero` 用正则匹配价格，Play 的双栏价格排版（"今天 ¥0 / 2027年 $19.99"）**经常**被误判为收费而不点（实测叠加步骤几乎每次都误判，日志会出现「当前金额 US$19.99，不是 0 元，不点确认」——这通常是误报）。弹窗出现时必须读屏/截图核对：套餐名正确 + 今天免费 + 有折算天数字样；确认无误后**人工点订阅**。点完再读订阅页日期验收，不要只看脚本日志。
 
 ## 4. 验收
 
@@ -67,6 +67,7 @@ adb shell am start -a android.intent.action.VIEW -d 'https://play.google.com/sto
 |---|---|
 | `--no-add` | 跳过自动加号，**必须用**，否则弹 Google 登录页 |
 | `--no-switch` | 不自动切号，只校验当前 Play 账号匹配 |
+| `--force` | 跳过 Play 账号读屏校验（新号界面读不到邮箱时用）。**前提**：设备里只有目标账号一个 Google 账号，先用 `adb shell dumpsys account \| grep name=` 确认，否则可能跑错号 |
 | `--list` | 只查询不下单（零风险） |
 | `--stack` | 订阅升级叠加（读旧 purchaseToken） |
 | `--plan pro12 / pro6 / pro6b / pro6c` | Pro 各免费档 |

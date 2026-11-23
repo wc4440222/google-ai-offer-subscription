@@ -24,6 +24,7 @@ compatibility: Agent Skills 通用规范（OpenCode / Claude Code / Codex CLI �
 3. **非 ¥0 一律不点订阅**，除非用户明确授权付费档
 4. **每次叠加后必须验收**：读订阅页「下次付款日期」，未 +6 个月则停止后续叠加
 5. 任何取消订阅操作都要用户明确同意（默认保留订阅，靠到期提醒处理）
+6. `--force` 仅用于新号读屏读不到账号的场景，**使用前必须确认设备里只有目标账号一个 Google 账号**（`adb shell dumpsys account | grep name=`），否则可能跑错号
 
 ## 工作流程
 
